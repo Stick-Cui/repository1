@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "mybatis-3-config.dtd" >
+<configuration>
+	
+	<!-- 加载db属性文件, 属性文件的属性会覆盖配置文件中相同的属性 -->
+	<properties resource="db.properties">
+	</properties>
+	
+	<!-- 运行环境配置 -->
+	<environments default="development">
+		<environment id="development">
+			<!-- 事务管理器,mybatis默认使用的jdbc的事务 -->
+			<transactionManager type="JDBC"></transactionManager>		
+					
+			<!-- 数据源配置,pooled:mybatis提供的连接池 -->
+			<dataSource type="POOLED">
+				<property name="driver"    value="${db.driver}"/>				
+				<property name="url"       value="${db.url}"/>				
+				<property name="username"  value="${db.username}"/>				
+				<property name="password"  value="${db.password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- 引入mapper映射文件 -->
+	<mappers>
+		<mapper  resource="sqlmap/User.xml"/>
+		<!-- 采用包扫描的方式 -->
+		<package name="com.itheima.mybatis.mapper"/>
+	</mappers>
+	
+	
+</configuration>

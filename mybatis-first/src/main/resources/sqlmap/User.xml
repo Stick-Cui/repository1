@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">	
+	
+	<!-- 根据id查询客户 -->
+	<select id="queryUserById" parameterType="int" resultType="com.itheima.mybatis.pojo.User">
+		select * from user where id = #{id}
+	</select>
+	
+	<!-- 根据用户名模糊查询客户 -->
+	<select id="queryUserByName" parameterType="string" resultType="com.itheima.mybatis.pojo.User">
+		select * from user where username like '%${value}%'
+	</select>
+	
+	<!-- 新增用户 1-->
+	<insert id="insertUserOne" parameterType="com.itheima.mybatis.pojo.User" >
+		insert into user(id,username,birthday,sex,address) 
+		values (#{id},#{username},#{birthday},#{sex},#{address}) 
+	</insert>
+	
+	<!-- 新增用户 2-->
+	<insert id="insertUserTwo" parameterType="com.itheima.mybatis.pojo.User" 
+	useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
+		insert into user(username,birthday,sex,address) 
+		values (#{username},#{birthday},#{sex},#{address}) 
+	</insert>
+	
+	<!-- 根据用户修改id -->
+	<update id="updateUserById" parameterType="com.itheima.mybatis.pojo.User">
+		update user set username = #{username}, sex = ${sex} where id = #{id} 
+	</update>
+	
+	
+	
+	
+	
+</mapper>
